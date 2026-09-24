@@ -1,0 +1,21 @@
+# Scene data is mounted at run time, not copied into the image.
+habitat_data
+habitat_data/**
+
+# Outputs
+logs
+results
+navmesh
+figures
+*.log
+
+# Build leftovers
+build
+install
+log
+**/__pycache__
+**/*.pyc
+**/*.egg-info
+
+.git
+.gitignore

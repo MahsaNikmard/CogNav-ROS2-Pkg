@@ -1,0 +1,19 @@
+# Local data and outputs
+habitat_data
+logs/
+results/
+navmesh/
+figures/
+
+# colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Model weights are downloaded by the Docker build
+src/cognav_perception/model_weights/*.pth

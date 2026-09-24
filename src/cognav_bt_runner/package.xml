@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>cognav_bt_runner</name>
+  <version>0.0.0</version>
+  <description>Behaviour tree runner that ticks a CogNav mission once per perception frame.</description>
+  <maintainer email="mahsa.nikmard@gssi.it">Mahsa Nikmard</maintainer>
+  <author email="mahsa.nikmard@gssi.it">Mahsa Nikmard</author>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <depend>cognav_bt_behaviors</depend>
+  <depend>cognav_mission</depend>
+  <depend>cognav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rclpy</depend>
+  <depend>cognav_representation</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>std_msgs</depend>
+  <exec_depend>cognav_perception</exec_depend>
+  <exec_depend>cognav_platform_adapter</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

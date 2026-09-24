@@ -1,0 +1,16 @@
+name: perception
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy=1.26.0
+  - scipy=1.11.3
+  - pyyaml
+  - tqdm
+  - lark
+  - pip:
+    - --extra-index-url https://download.pytorch.org/whl/cu118
+    - torch==2.0.1+cu118
+    - torchvision==0.15.2+cu118
+    - opencv-python==4.8.1.78

@@ -1,0 +1,16 @@
+/**:
+  ros__parameters:
+    # habitat or turtlebot.
+    platform: turtlebot
+
+    # TurtleBot4 namespace; empty selects /Turtlebot_02493.
+    robot_ns: ""
+
+    # Robot RGB topic relayed to /oakd/rgb/preview/image_raw, relative to
+    # robot_ns; empty selects color/preview/image.
+    rgb_image_topic: ""
+
+    # Habitat bridge and server.
+    endpoint: tcp://127.0.0.1:5561
+    sim_hz: 15.0
+    cmd_stale_sec: 0.5

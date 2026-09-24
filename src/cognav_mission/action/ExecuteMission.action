@@ -1,0 +1,16 @@
+# Mission XML text. Leave empty to use mission_xml_path.
+string mission_xml
+
+# BehaviorTree.CPP-style mission file, as <package>/<relative path> or absolute.
+# Leave empty to use the runner's mission_xml_path parameter.
+string mission_xml_path
+
+# Allow the runner to publish /cmd_vel for this mission.
+bool enable_cmd_vel
+---
+bool success
+string message
+uint32 tick_count
+---
+string current_state
+uint32 tick_count

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Arm "no_escape": the full mission without the Escape rung. Retry is kept,
+  so a stalled robot falls through to the terminal Brake.
+-->
+<root BTCPP_format="4" main_tree_to_execute="NoEscape">
+  <BehaviorTree ID="NoEscape">
+    <Fallback name="Priorities">
+
+      <Sequence name="MissionComplete">
+        <IsMissionComplete/>
+        <Brake/>
+      </Sequence>
+
+      <Sequence name="Navigate">
+        <Retry name="ProposeUntilSafe" num_attempts="3">
+          <Sequence name="ProposeAndVerify">
+            <RRTExploreWaypoint seed="7"/>
+            <FollowTheGap/>
+            <IsCommandSafe/>
+          </Sequence>
+        </Retry>
+        <HasWaypoint/>
+        <HasMotion/>
+        <ExecuteCommand/>
+      </Sequence>
+
+      <Brake/>
+    </Fallback>
+  </BehaviorTree>
+</root>

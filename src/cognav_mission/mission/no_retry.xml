@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Arm "no_retry": the full mission with ProposeAndVerify run once per tick
+  instead of inside Retry. The Escape rung is kept.
+-->
+<root BTCPP_format="4" main_tree_to_execute="NoRetry">
+  <BehaviorTree ID="NoRetry">
+    <Fallback name="Priorities">
+
+      <Sequence name="MissionComplete">
+        <IsMissionComplete/>
+        <Brake/>
+      </Sequence>
+
+      <Sequence name="Navigate">
+        <Sequence name="ProposeAndVerify">
+          <RRTExploreWaypoint seed="7"/>
+          <FollowTheGap/>
+          <IsCommandSafe/>
+        </Sequence>
+        <HasWaypoint/>
+        <HasMotion/>
+        <ExecuteCommand/>
+      </Sequence>
+
+      <Sequence name="Escape">
+        <IsStalled stall_ticks="15"/>
+        <Recover recovery_linear_speed="0.0"/>
+      </Sequence>
+
+      <Brake/>
+    </Fallback>
+  </BehaviorTree>
+</root>

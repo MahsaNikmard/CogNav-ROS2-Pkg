@@ -1,0 +1,69 @@
+# Measured depth_scale: the multiplicative correction applied to raw Depth
+# Anything V2 depth. It depends on the scene, so it is measured per scene with
+# scripts/calibrate_depth_scale.sh and recorded here with its provenance. The
+# launch file resolves the running scene against this table; episode manifests
+# carry their own value for scenes without an alias.
+#
+# iqr and per_sample_range show how well one scalar fits: the Habitat scenes
+# spread by 32 to 69 % of the median, the Hypersim control by 7 %.
+
+scenes:
+  hm3d_large:
+    depth_scale: 0.48
+    source: 00770-NBg5UqG3di3
+    samples: 23/24 usable
+    seed: 0
+    render: 250x250, hfov 89 deg, sensor height 0.32 m
+    measured: 2026-08-18
+    pooled_median: 0.484
+    iqr: [0.374, 0.707]
+    per_sample_range: [0.295, 0.971]
+
+  hm3d_small:
+    depth_scale: 0.36
+    source: 00861-GLAQ4DNUx5U
+    samples: 24/24 usable
+    seed: 0
+    render: 250x250, hfov 89 deg, sensor height 0.32 m
+    measured: 2026-08-18
+    pooled_median: 0.360
+    iqr: [0.238, 0.417]
+    per_sample_range: [0.172, 0.461]
+
+  van_gogh_room:
+    depth_scale: 0.48
+    source: habitat_test_scenes/van-gogh-room.glb
+    samples: 24/24 usable
+    seed: 0
+    render: 250x250, hfov 89 deg, sensor height 0.32 m
+    measured: 2026-08-18
+    pooled_median: 0.475
+    iqr: [0.418, 0.568]
+    per_sample_range: [0.189, 0.712]
+
+# Scene used when the scene argument is empty. Must match
+# DEFAULT_HABITAT_SCENE in platform_adapter_launch.py.
+platform_default_scene:
+  habitat: hm3d_large
+
+# Used when the scene has no entry above.
+platforms:
+  habitat: 0.36
+  turtlebot: 0.6
+
+# Used when neither scene nor platform matches. The smallest value in the
+# table, so an uncalibrated run reads obstacles nearer rather than farther.
+fallback: 0.36
+
+# Not a calibration and never selected by a scene argument: DA2 measured on its
+# own training distribution, which should return about 1.0.
+control:
+  hypersim_ai_002_001:
+    expected: ~1.0
+    pooled_median: 0.953
+    iqr: [0.920, 0.984]
+    per_sample_range: [0.881, 0.995]
+    samples: 24/24 usable
+    source: Hypersim ai_002_001, Living room, single storey
+    render: 1024x768, hfov 60 deg, fx 886.81, ray distance converted to planar Z
+    measured: 2026-08-18

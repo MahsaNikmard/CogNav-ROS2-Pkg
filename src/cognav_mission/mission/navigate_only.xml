@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Arm "navigate_only": neither Retry nor the Escape rung. The planner, driver
+  and safety gate are unchanged, and the terminal Brake still stops the robot
+  whenever Navigate fails.
+-->
+<root main_tree_to_execute="NavigateOnly">
+  <BehaviorTree ID="NavigateOnly">
+    <Fallback name="Priorities">
+
+      <Sequence name="MissionComplete">
+        <IsMissionComplete/>
+        <Brake/>
+      </Sequence>
+
+      <Sequence name="Navigate">
+        <Sequence name="ProposeAndVerify">
+          <RRTExploreWaypoint seed="7"/>
+          <FollowTheGap/>
+          <IsCommandSafe/>
+        </Sequence>
+        <HasWaypoint/>
+        <HasMotion/>
+        <ExecuteCommand/>
+      </Sequence>
+
+      <Brake/>
+    </Fallback>
+  </BehaviorTree>
+</root>

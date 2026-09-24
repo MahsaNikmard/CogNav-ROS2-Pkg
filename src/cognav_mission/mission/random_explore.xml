@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Full mission (arm "tree"): Navigate with Retry, and the Escape rung.
+
+  Navigate runs planner, driver and safety gate against one snapshot. The
+  driver only proposes a command; IsCommandSafe checks the arc of that exact
+  command, and ExecuteCommand publishes it only if the gate passed. A rejected
+  proposal is retried within the tick with the swept bins excluded. When no
+  forward command exists, IsStalled hands over to Recover, which turns in place.
+-->
+<root BTCPP_format="4" main_tree_to_execute="RandomExplore">
+  <BehaviorTree ID="RandomExplore">
+    <Fallback name="Priorities">
+
+      <Sequence name="MissionComplete">
+        <IsMissionComplete/>
+        <Brake/>
+      </Sequence>
+
+      <Sequence name="Navigate">
+        <Retry name="ProposeUntilSafe" num_attempts="3">
+          <Sequence name="ProposeAndVerify">
+            <RRTExploreWaypoint seed="7"/>
+            <FollowTheGap/>
+            <IsCommandSafe/>
+          </Sequence>
+        </Retry>
+        <HasWaypoint/>
+        <HasMotion/>
+        <ExecuteCommand/>
+      </Sequence>
+
+      <Sequence name="Escape">
+        <IsStalled stall_ticks="15"/>
+        <Recover recovery_linear_speed="0.0"/>
+      </Sequence>
+
+      <Brake/>
+    </Fallback>
+  </BehaviorTree>
+</root>

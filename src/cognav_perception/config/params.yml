@@ -1,0 +1,4 @@
+# Deployment overrides for cognav_perception. Defaults, ranges and descriptions
+# are in cognav_perception/defaults.py; depth_scale comes from depth_scale.yaml.
+/**:
+  ros__parameters: {}

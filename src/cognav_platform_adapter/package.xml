@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>cognav_platform_adapter</name>
+  <version>0.0.0</version>
+  <description>Platform adapters for CogNav: Habitat-Sim bridge and TurtleBot4.</description>
+
+  <maintainer email="mahsa.nikmard@gssi.it">Mahsa Nikmard</maintainer>
+  <author email="mahsa.nikmard@gssi.it">Mahsa Nikmard</author>
+
+  <license>Apache-2.0</license>
+
+  <depend>builtin_interfaces</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rclpy</depend>
+  <depend>rosgraph_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2_msgs</depend>
+  <depend>tf2_ros</depend>
+
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>python3-zmq</exec_depend>
+  <!-- Laboratory runs only. -->
+  <exec_depend>cognav_evaluation</exec_depend>
+  <exec_depend>irobot_create_msgs</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
